@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery UI Dialog - Default functionality</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+
+$(function () {
+
+$('.left').css( 'cursor', 'url(http://www.biologie.uni-hamburg.de/b-online/e36_talk/arrow_l.gif), auto' );
+$('.right').css( 'cursor', 'url(http://www.biologie.uni-hamburg.de/b-online/e36_talk/arrow_r.gif), auto' );
+    var count = $("#slider > img").length
+    var slider = 1
+    var speed=5000
+    var fadeSpeed = 300
+    var loop 
+    start()
+    $("#1").fadeIn(fadeSpeed);
+    $('.right').click(right)
+    $('.left').click(left)
+    $('#slider').hover(stop,start)
+    
+    function start(){
+        loop = setInterval(next, speed)
+    }
+    function stop(){
+        clearInterval(loop)
+    }
+    function right() {
+        stop()
+        next()
+        start()
+        return false
+    }
+
+    function left() {
+        stop()
+        prev()
+        start()
+        return false
+    }
+
+    function prev() {
+        slider--
+        if (slider < 1) {
+            slider = count
+        }
+
+        $("#slider > img").fadeOut(fadeSpeed)
+        $("#" + slider).fadeIn(fadeSpeed)
+    }
+
+    function next() {
+        slider++
+        if (slider > count) {
+            slider = 1
+        }
+
+        $("#slider > img").fadeOut(fadeSpeed)
+        $("#" + slider).fadeIn(fadeSpeed)
+    }
+});
+</script>
+<style>
+#wrapper {
+    position:relative;
+}
+#slider {
+    height:200px;
+}
+#slider img {
+    display: none;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    width: 400px;
+}
+#nav div {
+    height: 200px;
+}
+.left {
+
+    float: left;
+    width: 200px;
+}
+.right {
+
+    float: left;
+    width: 200px;
+}
+a{
+
+margin-top: 80px;}
+#nav {
+    
+    position: absolute;
+    text-align: center;
+    width: 400px;
+    
+}
+.wrapper {
+    float: left;
+}
+</style>
+</head>
+<body>
+<div class="main">
+<div class="wrapper">
+    <div id="slider">
+        <img id="1" alt="start" src="http://www.menucool.com/slider/jsImgSlider/images/image-slider-1.jpg">
+        <img id="2" alt="1" src="http://fc05.deviantart.net/fs71/f/2012/021/c/d/windows_nature_by_check2cc-d4n4kyv.jpg">
+        <img id="3" alt="2" src="http://photopeka.com/wp-content/uploads/2012/04/4-nature-top-11-list.jpg">
+    </div>
+</div>
+<div id="nav">
+    <div class="left">
+    <a href="#left" class="left">previous</a>
+	</div>
+	<div class="right">
+    <a href="#right" class="right">next</a></div>
+</div>
+</div>
+</body>
+</html>
